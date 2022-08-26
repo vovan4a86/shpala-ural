@@ -1,0 +1,1 @@
+<input type="text" class="form-control" name="{{ $name or 'setting['.$setting->id.']' }}" value="{{ $value or $setting->value }}" placeholder="{{ $placeholder or '' }}">

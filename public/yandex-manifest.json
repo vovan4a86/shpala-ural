@@ -1,0 +1,25 @@
+{
+  "name": "oteli96",
+  "lang": "ru",
+  "icons": [
+    {
+      "src": "apple-touch-icon.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "https://oteli96.ru/",
+  "scope": "https://oteli96.ru/",
+  "yandex": {
+    "manifest_version": 1,
+    "app_version": "1.0.0",
+    "cache": {
+      "resources": [
+        "/js/all.js",
+        "/css/all.css"
+      ],
+      "ignored_query_params": [
+      ]
+    }
+  }
+}
