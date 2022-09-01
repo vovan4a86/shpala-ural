@@ -3,7 +3,7 @@
      style="background-image: url(&quot;/images/common/questions-bg.jpg&quot;);">
     <div class="questions__heading">
         <div class="questions__title centered">Есть вопросы?
-            <br>Нужна конультация по вопросам покупки?</div>
+            <br>Нужна конcультация по вопросам покупки?</div>
         <div class="questions__grid">
             <div class="questions__item item-questions">
                 <div class="item-questions__icon">
@@ -13,7 +13,7 @@
                 </div>
                 <div class="item-questions__data">
                     <div class="item-questions__label">Звоните по телефону</div>
-                    <a class="item-questions__link" href="tel:{{ preg_replace('/[^\d]+/', '', Settings::get('header_phone')) }}">{{ Settings::get('header_phone') }}</a>
+                    <a class="item-questions__link" href="tel:{{ preg_replace('/[^\d]+/', '', Settings::get('questions_phone')) }}">{{ Settings::get('questions_phone') }}</a>
                 </div>
             </div>
             <div class="questions__item item-questions">
@@ -25,7 +25,7 @@
                 </div>
                 <div class="item-questions__data">
                     <div class="item-questions__label">Задавайте вопросы по электронной почте</div>
-                    <a class="item-questions__link" href="mailto:{{ Settings::get('header_email') }}">Email: {{ Settings::get('header_email') }}</a>
+                    <a class="item-questions__link" href="mailto:{{ Settings::get('questions_email') }}">Email: {{ Settings::get('questions_email') }}</a>
                 </div>
             </div>
         </div>

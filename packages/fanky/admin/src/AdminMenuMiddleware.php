@@ -28,8 +28,8 @@ class AdminMenuMiddleware {
 
 			$menu->add('Новости', ['route' => 'admin.news', 'icon' => 'fa-calendar'])
 				->active('/admin/news/*');
-			$menu->add('Обратная связь', ['route' => 'admin.feedbacks', 'icon' => 'fa-list'])
-				->active('/admin/feedback/*');
+//			$menu->add('Обратная связь', ['route' => 'admin.feedbacks', 'icon' => 'fa-list'])
+//				->active('/admin/feedback/*');
 //			$menu->catalog->add('Каталог', ['route' => 'admin.catalog', 'icon' => 'fa-list'])
 //				->active('/admin/catalog/*');
 //			$menu->catalog->add('Заказы', ['route' => 'admin.orders', 'icon' => 'fa-dollar'])

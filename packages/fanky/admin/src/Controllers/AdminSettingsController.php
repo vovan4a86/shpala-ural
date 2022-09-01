@@ -223,13 +223,74 @@ class AdminSettingsController extends AdminController {
 					if (starts_with($item, 'setting_file_')) {
 						if ($file = Request::file($item)) {
 							$ext = $file->getClientOriginalExtension();
-							$file_name = 'setting_' . $setting->id . '_' . uniqid() . '.' . $ext;
+							$file_nameNoExt = 'setting_' . $setting->id . '_' . uniqid();
+							$file_name = $file_nameNoExt . '.' . $ext;
 							$file->move(base_path() . $setting::UPLOAD_PATH, $file_name);
-							if(in_array($ext, self::$image_array)){
+                            if(in_array($ext, self::$image_array)){
 								Image::make(base_path($setting::UPLOAD_PATH . $file_name))->save(null, Settings::get('image_quality', 100));
 							}
 							$item = $file_name;
-						} else {
+
+                            if($setting->id == 12) {
+                                // делаем дубли изображений только для слайдера на главной с разным разрешением
+                                $destinationPath = base_path() . $setting::UPLOAD_PATH;
+
+                                //webp full
+                                $imageFullWebP = Image::make(base_path($setting::UPLOAD_PATH . $file_name))->encode('webp', 90);
+                                $imageFullWebP->save($destinationPath . $file_nameNoExt . '.webp');
+
+                                //------------1600
+                                $imageResize1600 = Image::make(base_path($setting::UPLOAD_PATH . $file_name))->encode('jpg', 90);
+                                if ($imageResize1600->width() > 2400){
+                                    $imageResize1600->resize(2400, null, function ($constraint) {
+                                        $constraint->aspectRatio();
+                                    });
+                                }
+                                $imageResize1600->save($destinationPath . $file_nameNoExt . '--1600.jpg');
+
+                                $imageResize1600p = Image::make(base_path($setting::UPLOAD_PATH . $file_name))->encode('webp', 90);
+                                if ($imageResize1600p->width() > 2400){
+                                    $imageResize1600p->resize(2400, null, function ($constraint) {
+                                        $constraint->aspectRatio();
+                                    });
+                                }
+                                $imageResize1600p->save($destinationPath . $file_nameNoExt . '--1600.webp');
+
+                                //------------1024
+                                $imageResize1024 = Image::make(base_path($setting::UPLOAD_PATH . $file_name))->encode('jpg', 90);
+                                if ($imageResize1024->width() > 1536){
+                                    $imageResize1024->resize(1536, null, function ($constraint) {
+                                        $constraint->aspectRatio();
+                                    });
+                                }
+                                $imageResize1024->save($destinationPath . $file_nameNoExt . '--1024.jpg');
+
+                                $imageResize1024p = Image::make(base_path($setting::UPLOAD_PATH . $file_name))->encode('webp', 90);
+                                if ($imageResize1024p->width() > 1536){
+                                    $imageResize1024p->resize(1536, null, function ($constraint) {
+                                        $constraint->aspectRatio();
+                                    });
+                                }
+                                $imageResize1024p->save($destinationPath . $file_nameNoExt . '--1024.webp');
+
+                                //------------768
+                                $imageResize768 = Image::make(base_path($setting::UPLOAD_PATH . $file_name))->encode('jpg', 90);
+                                if ($imageResize768->width() > 1152){
+                                    $imageResize768->resize(1152, null, function ($constraint) {
+                                        $constraint->aspectRatio();
+                                    });
+                                }
+                                $imageResize768->save($destinationPath . $file_nameNoExt . '--768.jpg');
+
+                                $imageResize768p = Image::make(base_path($setting::UPLOAD_PATH . $file_name))->encode('webp', 90);
+                                if ($imageResize768p->width() > 1152){
+                                    $imageResize768p->resize(1152, null, function ($constraint) {
+                                        $constraint->aspectRatio();
+                                    });
+                                }
+                                $imageResize768p->save($destinationPath . $file_nameNoExt . '--768.webp');
+                            }
+                        } else {
 							$item = null;
 						}
 					}

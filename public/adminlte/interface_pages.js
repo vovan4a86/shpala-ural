@@ -34,7 +34,7 @@ function pageSave(form, e) {
     });
     if (newsImage) {
         data.append('image', newsImage);
-    };
+    }
     sendFiles(url, data, function (json) {
         if (typeof json.errors != 'undefined') {
             applyFormValidate(form, json.errors);
@@ -62,7 +62,7 @@ function pageSave(form, e) {
                     $('#pages-tree li[data-id=' + parent + '] > ul').append(item);
                 }
             }
-            console.log('id = ' + id + ', parent = ' + parent + ', cur_parent = ' + cur_parent);
+            // console.log('id = ' + id + ', parent = ' + parent + ', cur_parent = ' + cur_parent);
         }
         if (typeof json.success != 'undefined' && json.success == true) {
             settingFiles = {};

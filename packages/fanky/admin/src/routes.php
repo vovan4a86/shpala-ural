@@ -94,6 +94,12 @@ Route::group(['namespace' => 'Fanky\Admin\Controllers', 'prefix' => 'admin', 'as
 
 		Route::post('del-feature/{id}', $controller . 'delFeature')
 			->name('.delFeature');
+
+		Route::get('edit-feature/{id}', $controller . 'editFeature')
+			->name('.editFeature');
+
+		Route::post('del-feature-image/{id}', $controller . 'delFeatureImage')
+			->name('.delFeatureImage');
 	});
 
 	Route::group(['as' => '.news', 'prefix' => 'news'], function () {

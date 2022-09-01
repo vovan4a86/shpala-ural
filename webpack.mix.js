@@ -14,11 +14,8 @@ mix.sourcemaps = false;
 mix.browserSync({
     proxy: 'shpala-ural'
 });
-mix.scripts([
-        'resources/assets/js/jquery-2.2.4.min.js',
-        'resources/assets/js/jquery.magnific-popup.min.js',
-        'resources/assets/js/interface.js',
-        'resources/assets/js/main.js',
+mix.js([
+        'static/js--sources/main.js',
     ], 'public/js/all.js')
 
     .styles([

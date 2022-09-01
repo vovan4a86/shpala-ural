@@ -8,12 +8,12 @@
 @stop
 
 @section('page_name')
-    <h1>Добавление преимущества</h1>
+    <h1>{{ $item->id ? 'Изменение' : 'Добавление' }} преимущества</h1>
 @stop
 
 @section('content')
     <form action="{{ route('admin.catalog.saveFeature') }}" onsubmit="return newsSave(this, event)">
-        <input type="hidden" name="id" value="{{ $id }}">
+        <input type="hidden" name="id" value="{{ $item->id }}">
 
         <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
@@ -21,22 +21,20 @@
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active" id="tab_1">
-                    {!! Form::groupText('text', '', 'Название') !!}
+                    {!! Form::groupText('text', $item->text, 'Название') !!}
                     <div class="form-group">
                         <label for="article-image">Изображение (40x40, *.ico)</label>
-                        <input id="article-image" type="file" name="image" value=""
+                        <input id="article-image" type="file" name="image" value="{{ $item->image ?? \Fanky\Admin\Models\CatalogFeature::UPLOAD_URL . $item->image }}"
                                onchange="return newsImageAttache(this, event)">
                         <div id="article-image-block">
-{{--                        @if ($item->image)--}}
-{{--                            <img class="img-polaroid" src="{{ $item->thumb(1) }}" height="100"--}}
-{{--                                 data-image="{{ $item->image_src }}"--}}
-{{--                                 onclick="return popupImage($(this).data('image'))">--}}
-{{--                            <a class="images_del" href="{{ route('admin.product-icons.delete-image', [$item->id]) }}" onclick="return newsImageDel(this, event)">--}}
-{{--                                <span class="glyphicon glyphicon-trash text-red"></span></a>--}}
-{{--                        @else--}}
-{{--                            --}}
-{{--                        @endif--}}
+                        @if ($item->image)
+                            <img class="img-polaroid" src="{{ \Fanky\Admin\Models\CatalogFeature::UPLOAD_URL . $item->image }}" height="100"
+                                 data-image="{{ \Fanky\Admin\Models\CatalogFeature::UPLOAD_URL . $item->image }}">
+                            <a class="images_del" href="{{ route('admin.catalog.delFeatureImage', [$item->id]) }}" onclick="return newsImageDel(this, event)">
+                                <span class="glyphicon glyphicon-trash text-red"></span></a>
+                        @else
                             <p class="text-yellow">Изображение не загружено.</p>
+                        @endif
                         </div>
                     </div>
 

@@ -29,6 +29,11 @@
             <ul class="nav nav-tabs">
                 <li class="active"><a href="#tab_1" data-toggle="tab">Параметры</a></li>
                 <li><a href="#tab_2" data-toggle="tab">Текст</a></li>
+                @if($article->id)
+                    <li class="pull-right">
+                        <a href="{{ $article->url }}" target="_blank">Посмотреть</a>
+                    </li>
+                @endif
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active" id="tab_1">

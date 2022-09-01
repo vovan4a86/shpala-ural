@@ -22,7 +22,12 @@
 								</span>
 							</td>
 							<td><span>{{ $item->text }}</span></td>
-{{--							<td><a href="{{ route('admin.catalog.productEdit', [$item->id]) }}">{{ $item->text }}</a></td>--}}
+{{--							<td><a href="{{ route('admin.catalog.editFeature', [$item->id]) }}">{{ $item->text }}</a></td>--}}
+							<td>
+								<a class="glyphicon glyphicon-pencil"
+								   href="{{ route('admin.catalog.editFeature', [$item->id]) }}"
+								   style="font-size:20px; color:red;" title="Редактировать"></a>
+							</td>
 							<td>
 								<a class="glyphicon glyphicon-trash"
 								   href="{{ route('admin.catalog.delFeature', [$item->id]) }}"

@@ -70,6 +70,19 @@ function newsDel(elem){
     return false;
 }
 
+function newsImageDel(elem){
+    if (!confirm('Удалить изображение?')) return false;
+    var url = $(elem).attr('href');
+    sendAjax(url, {}, function(json){
+        if (typeof json.success != 'undefined' && json.success == true) {
+            $(elem).closest('img').fadeOut(300, function(){ $(this).remove(); });
+        }
+        if (typeof json.redirect != 'undefined') document.location.href = urldecode(json.redirect);
+
+    });
+    return false;
+}
+
 
 
 $(document).ready(function () {

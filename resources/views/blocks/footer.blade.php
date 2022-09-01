@@ -19,18 +19,18 @@
                 </ul>
             </nav>
             <div class="footer__contacts">
-                <a class="phone" href="tel:{{ preg_replace('/[^\d]+/', '', Settings::get('header_phone')) }}" title="Позвонить {{ Settings::get('footer_phone') }}">
+                <a class="phone" href="tel:{{ preg_replace('/[^\d]+/', '', Settings::get('footer_phone')) }}" title="Позвонить {{ Settings::get('footer_phone') }}">
                     <svg class="svg-sprite-icon icon-phone">
                         <use xlink:href="/images/sprite/symbol/sprite.svg#phone"></use>
                     </svg>
-                    <span>{{ Settings::get('header_phone') }}</span>
+                    <span>{{ Settings::get('footer_phone') }}</span>
                 </a>
                 <div class="footer__blocks">
-                    <a class="email" href="mailto:{{ Settings::get('header_email') }}" title="Написать письмо">
+                    <a class="email" href="mailto:{{ Settings::get('footer_email') }}" title="Написать письмо">
                         <svg class="svg-sprite-icon icon-mail">
                             <use xlink:href="/images/sprite/symbol/sprite.svg#mail"></use>
                         </svg>
-                        <span>{{ Settings::get('header_email') }}</span>
+                        <span>{{ Settings::get('footer_email') }}</span>
                     </a>
                 </div>
             </div>

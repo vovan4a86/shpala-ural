@@ -70,7 +70,6 @@ class AdminCatalogController extends AdminController {
 		$catalogs = Catalog::orderBy('order')->get();
 		$items = CatalogFeature::where('catalog_id', '=', $id);
 
-
 		return view('admin::catalog.main', ['catalogs' => $catalogs, 'content' => $this->postCatalogEdit($id), 'items' => $items]);
 	}
 
@@ -294,7 +293,7 @@ class AdminCatalogController extends AdminController {
 			$html .= view('admin::catalog.catalog_image', ['image' => $item, 'active' => '']);
 		}
 
-		return ['html' => $html];;
+		return ['html' => $html];
 	}
 
 	public function postCatalogImageOrder() {
@@ -314,19 +313,25 @@ class AdminCatalogController extends AdminController {
 		return ['success' => true];
 	}
 
-	public function addFeature($id = null) {
-		return view('admin::features.edit', ['id' => $id]);
+	public function addFeature($catalog_id) {
+	    $data['catalog_id'] = $catalog_id;
+	    $item = CatalogFeature::create($data);
+		return view('admin::features.edit', ['item' => $item]);
 	}
+
+    public function editFeature($id) {
+        $item = CatalogFeature::find($id);
+        return view('admin::features.edit', ['item' => $item]);
+    }
 
 	public function saveFeature() {
 		$id = Request::input('id');
+		$catalog_id = Request::input('catalog_id');
 		$data = Request::only(['text']);
 		$image = Request::file('image');
 
 		// валидация данных
-		$validator = Validator::make($data, [
-			'text' => 'required',
-		]);
+		$validator = Validator::make($data, ['text' => 'required']);
 		if ($validator->fails()) {
 			return ['errors' => $validator->messages()];
 		}
@@ -337,25 +342,22 @@ class AdminCatalogController extends AdminController {
 			$data['image'] = $file_name;
 		}
 
-		$data['catalog_id'] = $id;
-
 		// сохраняем страницу
-//		$article = CatalogFeature::find($id);
-//		$redirect = false;
-//		if (!$article) {
-//			$article = CatalogFeature::create($data);
-//			$redirect = true;
-//		} else {
-//			if ($article->image && isset($data['image'])) {
-//				$article->deleteImage();
-//			}
-//			$article->update($data);
-//		}
+		$article = CatalogFeature::find($id);
+		$redirect = false;
 
-		CatalogFeature::create($data);
-		$redirect = true;
-
-		return ['redirect' => route('admin.catalog.catalogEdit', ['id' => $id])];
+		if (!$article) {
+            $data['catalog_id'] = $catalog_id;
+            $article = CatalogFeature::create($data);
+			$redirect = true;
+            return ['redirect' => route('admin.catalog.catalogEdit', ['id' => $catalog_id])];
+		} else {
+			if ($article->image && isset($data['image'])) {
+				$article->deleteImage();
+			}
+			$article->update($data);
+            return ['redirect' => route('admin.catalog.catalogEdit', [$article->catalog_id])];
+        }
 	}
 
 	public function delFeature($id) {
@@ -364,5 +366,15 @@ class AdminCatalogController extends AdminController {
 		return ['success' => true];
 	}
 
+
+    public function delFeatureImage($id) {
+        $item = CatalogFeature::find($id);
+        if(!$item) return ['error' => 'image_not_found'];
+
+        $item->update(['image' => null]);
+
+        return ['redirect' => route('admin.catalog.addFeature', ['id' => $item->id])];
+//        return ['success' => true];
+    }
 
 }

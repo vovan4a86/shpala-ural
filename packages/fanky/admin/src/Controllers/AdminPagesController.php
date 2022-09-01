@@ -116,7 +116,8 @@ class AdminPagesController extends AdminController {
 				$page->save();
 			}
 
-			return ['redirect' => route('admin.pages.edit', [$page->id])];
+            return ['success' => true, 'msg' => 'Изменения сохранены'];
+//			return ['redirect' => route('admin.pages.edit', [$page->id])];
 		} else {
 			if ($page->system == 1) unset($data['alias']);
 			if ($page->parent_id != $data['parent_id']) $data['order'] = Page::where('parent_id', $data['parent_id'])->max('order') + 1;
@@ -133,7 +134,9 @@ class AdminPagesController extends AdminController {
 				foreach ($settings as $setting) {
 					AdminSettingsController::settingSave($setting, array_get($settings_data, $setting->id));
 				}
-				if (!empty($_FILES)) return ['redirect' => route('admin.pages.edit', [$page->id])];
+				if (!empty($_FILES)) return
+                    ['success' => true, 'msg' => 'Изменения сохранены'];
+//                    ['redirect' => route('admin.pages.edit', [$page->id])];
 			}
 		}
 
