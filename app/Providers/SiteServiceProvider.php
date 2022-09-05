@@ -46,42 +46,42 @@ class SiteServiceProvider extends ServiceProvider {
 			]);
 		});
 
-		View::composer(['layout_2col'], function (IllumView $view) {
-			$hotels = Catalog::query()
-				->leftJoin('catalogs as p1', function ($join) {
-					$join->on('catalogs.id', '=', 'p1.parent_id')
-						->on('p1.published', '=', DB::raw('1'))
-						->on('p1.hide_on_menu', '=', DB::raw('0'));
-				})
-				->where('catalogs.published', 1)
-				->where('catalogs.parent_id', 0)
-				->where('catalogs.hide_on_menu', 0)
-				->whereIn('catalogs.id', Catalog::$oteli_ids)
-				->groupBy('catalogs.id')
-				->orderBy('catalogs.order')
-				->get([
-					'catalogs.*',
-					DB::raw('count(p1.id) as children_count')]);
-			$services = Catalog::query()
-				->leftJoin('catalogs as p1', function ($join) {
-					$join->on('catalogs.id', '=', 'p1.parent_id')
-						->on('p1.published', '=', DB::raw('1'))
-						->on('p1.hide_on_menu', '=', DB::raw('0'));
-				})
-				->where('catalogs.published', 1)
-				->where('catalogs.parent_id', 0)
-				->where('catalogs.hide_on_menu', 0)
-				->whereNotIn('catalogs.id', Catalog::$oteli_ids)
-				->groupBy('catalogs.id')
-				->orderBy('catalogs.order')
-				->get([
-					'catalogs.*',
-					DB::raw('count(p1.id) as children_count')]);
-			$view->with([
-				'hotels'   => $hotels,
-				'services' => $services
-			]);
-
-		});
+//		View::composer(['layout_2col'], function (IllumView $view) {
+//			$hotels = Catalog::query()
+//				->leftJoin('catalogs as p1', function ($join) {
+//					$join->on('catalogs.id', '=', 'p1.parent_id')
+//						->on('p1.published', '=', DB::raw('1'))
+//						->on('p1.hide_on_menu', '=', DB::raw('0'));
+//				})
+//				->where('catalogs.published', 1)
+//				->where('catalogs.parent_id', 0)
+//				->where('catalogs.hide_on_menu', 0)
+//				->whereIn('catalogs.id', Catalog::$oteli_ids)
+//				->groupBy('catalogs.id')
+//				->orderBy('catalogs.order')
+//				->get([
+//					'catalogs.*',
+//					DB::raw('count(p1.id) as children_count')]);
+//			$services = Catalog::query()
+//				->leftJoin('catalogs as p1', function ($join) {
+//					$join->on('catalogs.id', '=', 'p1.parent_id')
+//						->on('p1.published', '=', DB::raw('1'))
+//						->on('p1.hide_on_menu', '=', DB::raw('0'));
+//				})
+//				->where('catalogs.published', 1)
+//				->where('catalogs.parent_id', 0)
+//				->where('catalogs.hide_on_menu', 0)
+//				->whereNotIn('catalogs.id', Catalog::$oteli_ids)
+//				->groupBy('catalogs.id')
+//				->orderBy('catalogs.order')
+//				->get([
+//					'catalogs.*',
+//					DB::raw('count(p1.id) as children_count')]);
+//			$view->with([
+//				'hotels'   => $hotels,
+//				'services' => $services
+//			]);
+//
+//		});
 	}
 }

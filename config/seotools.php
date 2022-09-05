@@ -34,7 +34,7 @@ return [
             'url'         => false, // Set null for using Url::current(), set false to total remove
             'type'        => 'site',
             'site_name'   => 'Сеть отелей RUS',
-            'images'      => ['https://oteli96.ru/og_image_vk.jpg'],
+            'images'      => ['https://shpala-ural.ru/og_image_vk.jpg'],
         ],
     ],
     'twitter' => [

@@ -373,7 +373,7 @@ class AdminCatalogController extends AdminController {
 
         $item->update(['image' => null]);
 
-        return ['redirect' => route('admin.catalog.addFeature', ['id' => $item->id])];
+        return ['redirect' => route('admin.catalog.editFeature', ['item' => $item])];
 //        return ['success' => true];
     }
 

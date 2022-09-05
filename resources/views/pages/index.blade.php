@@ -15,27 +15,25 @@
                                 @php
                                     $file_name = stristr(Settings::fileSrc($slide['slider_image']), '.', true);
                                 @endphp
-                                <picture>
-                                    <source media="(max-width: 768px)" srcset="{{ $file_name }}--768.webp"
-                                            type="image/webp">
-                                    <source media="(max-width: 768px)" srcset="{{ $file_name }}--768.jpg">
-                                    <source media="(max-width: 1024px)" srcset="{{ $file_name }}--1024.webp"
-                                            type="image/webp">
-                                    <source media="(max-width: 1024px)" srcset="{{ $file_name }}--1024.jpg">
-                                    <source media="(max-width: 1600px)" srcset="{{ $file_name }}--1600.webp"
-                                            type="image/webp">
-                                    <source media="(max-width: 1600px)" srcset="{{ $file_name }}--1600.jpg">
-                                    <source srcset="{{ $file_name }}.webp" type="image/webp">
-                                    <img class="main-slider__picture swiper-lazy swiper-lazy-loaded"
-                                         src="{{ $file_name }}.jpg" alt="picture">
-                                </picture>
+                                @if($file_name)
+                                    <picture>
+    {{--                                    <source media="(max-width: 768px)" srcset="{{ $file_name }}--768.webp" type="image/webp">--}}
+                                        <source media="(max-width: 768px)" srcset="{{ $file_name }}--768.jpg">
+    {{--                                    <source media="(max-width: 1024px)" srcset="{{ $file_name }}--1024.webp" type="image/webp">--}}
+                                        <source media="(max-width: 1024px)" srcset="{{ $file_name }}--1024.jpg">
+    {{--                                    <source media="(max-width: 1600px)" srcset="{{ $file_name }}--1600.webp" type="image/webp">--}}
+                                        <source media="(max-width: 1600px)" srcset="{{ $file_name }}--1600.jpg">
+    {{--                                    <source srcset="{{ $file_name }}.webp" type="image/webp">--}}
+                                        <img class="main-slider__picture swiper-lazy swiper-lazy-loaded" src="{{ $file_name }}.jpg" alt="picture">
+                                    </picture>
+                                @endif
                             </div>
                             <div class="container main-slider__container">
                                 <div class="main-slider__content">
                                     <h2 class="main-slider__title">{{ $slide['slider_title'] }}</h2>
                                     <p class="main-slider__text">{{ $slide['slider_text'] }}</p>
                                     <div class="main-slider__action">
-                                        <a class="btn btn--iconed" href="#catalog-list">
+                                        <a class="btn btn--iconed" href="{{ $slide['slider_link'] }}">
                                             <span>Подробнее</span>
                                             <svg class="svg-sprite-icon icon-arrow">
                                                 <use xlink:href="images/sprite/symbol/sprite.svg#arrow"></use>

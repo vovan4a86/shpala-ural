@@ -1,5 +1,5 @@
 {
-  "name": "oteli96",
+  "name": "shpala-ural",
   "lang": "ru",
   "icons": [
     {
@@ -8,8 +8,8 @@
       "type": "image/png"
     }
   ],
-  "start_url": "https://oteli96.ru/",
-  "scope": "https://oteli96.ru/",
+  "start_url": "https://shpala-ural.ru/",
+  "scope": "https://shpala-ural.ru/",
   "yandex": {
     "manifest_version": 1,
     "app_version": "1.0.0",

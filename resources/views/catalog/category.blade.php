@@ -37,6 +37,7 @@
         @if(count($features) && !$feat_before_slider)
             @include('blocks.features')
         @endif
+        @if(count($gosts_array))
         <div class="content__head">
             <div class="container text-content">
                 <h2>{{ $category->price_header }}</h2>
@@ -85,6 +86,7 @@
                 </article>
             </div>
         </div>
+        @endif
     </section>
 
     @include('blocks.feedback')

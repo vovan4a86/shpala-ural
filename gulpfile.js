@@ -14,7 +14,7 @@ elixir.config.sourcemaps = false;
 
 elixir(function(mix) {
     mix.browserSync({
-        proxy: 'oteli.test'
+        proxy: 'shpala-ural.test'
     });
 
     mix.scripts([

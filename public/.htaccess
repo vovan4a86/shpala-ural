@@ -2,8 +2,8 @@
 
     RewriteEngine On
 
-    RewriteCond %{HTTP_HOST} ^www.oteli96.ru$
-    RewriteRule ^(.*)$ https://oteli96.ru/$1 [R=301,L]
+    #RewriteCond %{HTTP_HOST} ^www.oteli96.ru$
+    #RewriteRule ^(.*)$ https://oteli96.ru/$1 [R=301,L]
 #
 #    RewriteCond %{HTTPS} =off
 #    RewriteRule (.*) https://2gas.ru%{REQUEST_URI} [R=301,QSA,L]

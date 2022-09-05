@@ -123,7 +123,7 @@ class AjaxController extends Controller {
 			$data['published'] = 0;
 			$review = Review::create($data);
 			Mail::send('mail.review', ['review' => $review], function ($message) use ($review) {
-				$title = $review->id . ' | Отзыв | Oteli96';
+				$title = $review->id . ' | Отзыв | shpala-ural';
 				$message->from($this->fromMail, $this->fromName)
 					->to(Settings::get('feedback_email'))
 //					->to('as@klee.ru')
